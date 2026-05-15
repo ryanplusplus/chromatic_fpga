@@ -252,7 +252,7 @@ module system_monitor(
         else
             lcdcount <= 'd0;
 
-    assign LCD_PWM = LCD_INIT_DONE&LCD_BACKLIGHT_INIT ? (lcdcount <= {brightness[3:0], 4'd0}) : 1'd0;
+    assign LCD_PWM = LCD_INIT_DONE&LCD_BACKLIGHT_INIT ? (lcdcount <= {brightness[3], 2'd0, brightness[2:0], 2'd0}) : 1'd0;
 
 
     // 8.388608Mhz clock -> ~119.2ns
@@ -389,7 +389,7 @@ module system_monitor(
     reg [13:0] version = {
         1'd0,  // 1 bit reserved
         1'd0,  // 1 bit debug,
-        6'd8,  // 6 bits minor version
+        0'd8,  // 6 bits minor version
         6'd18  // 6 bits major version
     };
 
