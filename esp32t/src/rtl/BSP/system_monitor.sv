@@ -301,17 +301,38 @@ module system_monitor(
             lcdcount <= 'd0;
 
 
+    reg [7:0] brightness_pwm_threshold;
+
     // control backlight through external signal, for example, tied to emulator reset
     always_comb begin
+        case (brightness)
+            4'd0: brightness_pwm_threshold = 8'd0;
+            4'd1: brightness_pwm_threshold = 8'd4;
+            4'd2: brightness_pwm_threshold = 8'd8;
+            4'd3: brightness_pwm_threshold = 8'd12;
+            4'd4: brightness_pwm_threshold = 8'd16;
+            4'd5: brightness_pwm_threshold = 8'd21;
+            4'd6: brightness_pwm_threshold = 8'd27;
+            4'd7: brightness_pwm_threshold = 8'd35;
+            4'd8: brightness_pwm_threshold = 8'd45;
+            4'd9: brightness_pwm_threshold = 8'd57;
+            4'd10: brightness_pwm_threshold = 8'd73;
+            4'd11: brightness_pwm_threshold = 8'd93;
+            4'd12: brightness_pwm_threshold = 8'd118;
+            4'd13: brightness_pwm_threshold = 8'd150;
+            4'd14: brightness_pwm_threshold = 8'd190;
+            4'd15: brightness_pwm_threshold = 8'd240;
+            default: brightness_pwm_threshold = 8'd0;
+        endcase
+
         LCD_PWM = 1'b0;
         if (appear_off) begin
             LCD_PWM = 1'b0;
         end
         else begin // leave back light on
-            LCD_PWM = LCD_INIT_DONE&LCD_BACKLIGHT_INIT ? (lcdcount <= {brightness[3:0], 4'd0}) : 1'd0;
+            LCD_PWM = LCD_INIT_DONE&LCD_BACKLIGHT_INIT ? (lcdcount <= brightness_pwm_threshold) : 1'd0;
         end
     end
-//////    assign LCD_PWM = LCD_INIT_DONE&LCD_BACKLIGHT_INIT ? (lcdcount <= {brightness[3], 2'd0, brightness[2:0], 2'd0}) : 1'd0;
 
 
     // 8.388608Mhz clock -> ~119.2ns
