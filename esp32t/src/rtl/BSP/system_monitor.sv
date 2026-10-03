@@ -307,18 +307,18 @@ module system_monitor(
     always_comb begin
         case (brightness)
             4'd0: brightness_pwm_threshold = 8'd0;
-            4'd1: brightness_pwm_threshold = 8'd4;
-            4'd2: brightness_pwm_threshold = 8'd8;
-            4'd3: brightness_pwm_threshold = 8'd12;
-            4'd4: brightness_pwm_threshold = 8'd16;
-            4'd5: brightness_pwm_threshold = 8'd21;
-            4'd6: brightness_pwm_threshold = 8'd27;
-            4'd7: brightness_pwm_threshold = 8'd35;
-            4'd8: brightness_pwm_threshold = 8'd45;
-            4'd9: brightness_pwm_threshold = 8'd57;
-            4'd10: brightness_pwm_threshold = 8'd73;
-            4'd11: brightness_pwm_threshold = 8'd93;
-            4'd12: brightness_pwm_threshold = 8'd118;
+            4'd1: brightness_pwm_threshold = 8'd2;
+            4'd2: brightness_pwm_threshold = 8'd4;
+            4'd3: brightness_pwm_threshold = 8'd6;
+            4'd4: brightness_pwm_threshold = 8'd8;
+            4'd5: brightness_pwm_threshold = 8'd12;
+            4'd6: brightness_pwm_threshold = 8'd17;
+            4'd7: brightness_pwm_threshold = 8'd23;
+            4'd8: brightness_pwm_threshold = 8'd32;
+            4'd9: brightness_pwm_threshold = 8'd44;
+            4'd10: brightness_pwm_threshold = 8'd65;
+            4'd11: brightness_pwm_threshold = 8'd80;
+            4'd12: brightness_pwm_threshold = 8'd105;
             4'd13: brightness_pwm_threshold = 8'd150;
             4'd14: brightness_pwm_threshold = 8'd190;
             4'd15: brightness_pwm_threshold = 8'd240;
